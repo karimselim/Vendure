@@ -23,13 +23,20 @@ export class signupPage {
   }
 
   async signup() {
+    const passwordInput = process.env.SIGNUP_PASSWORD;
+    if (!passwordInput) {
+      throw new Error(
+        "the password that I should get from .env file is not existing",
+      );
+    }
+
     this.page.goto(signupData.signupUrl);
     this.email.fill(signupData.email);
     this.firstName.fill(signupData.firstName);
     this.lastName.fill(signupData.lastName);
     this.phoneNumber.fill(signupData.phoneNumber);
-    this.password.fill(process.env.SIGNUP_PASSWORD);
-    this.confirmPassword.fill(process.env.SIGNUP_PASSWORD);
+    this.password.fill(passwordInput);
+    this.confirmPassword.fill(passwordInput);
     this.createAccountButton.click();
   }
 }
