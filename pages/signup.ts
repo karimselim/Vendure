@@ -1,5 +1,4 @@
 import { Page, Locator } from "@playwright/test";
-import { signupData } from "../test-data/signup";
 
 export class SignupPage {
   private readonly email: Locator;
@@ -28,7 +27,7 @@ export class SignupPage {
     });
   }
 
-  async signup() {
+  async signup(signupData: SignupDataType) {
     const passwordInput = process.env.SIGNUP_PASSWORD;
     if (!passwordInput) {
       throw new Error(
