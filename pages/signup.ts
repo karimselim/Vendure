@@ -37,13 +37,14 @@ export class SignupPage {
     }
 
     await this.page.goto(signupData.signupUrl);
+    await this.page.waitForLoadState("networkidle");
     await this.email.fill(signupData.email);
     await this.firstName.fill(signupData.firstName);
     await this.lastName.fill(signupData.lastName);
     await this.phoneNumber.fill(signupData.phoneNumber);
     await this.password.fill(passwordInput);
     await this.confirmPassword.fill(passwordInput);
-    await this.page.pause();
+    // await this.page.pause();
     await this.createAccountButton.click();
   }
 }
