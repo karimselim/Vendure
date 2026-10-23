@@ -1,7 +1,7 @@
 import { Page, Locator } from "@playwright/test";
 import { signupData } from "../test-data/signup";
 
-export class signupPage {
+export class SignupPage {
   private readonly email: Locator;
   private readonly firstName: Locator;
   private readonly lastName: Locator;
