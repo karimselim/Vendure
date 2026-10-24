@@ -1,5 +1,4 @@
 export const signupData = {
-  signupUrl: "http://localhost:3001/en/register",
   email: "testing@testing.com",
   firstName: "test",
   lastName: "testing",

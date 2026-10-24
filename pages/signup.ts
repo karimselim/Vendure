@@ -35,7 +35,7 @@ export class SignupPage {
       );
     }
 
-    await this.page.goto(signupData.signupUrl);
+    await this.page.goto("/register");
     //I've removed networkIdle as playwright docs it self descourage using it
     //networkidle' - DISCOURAGED consider operation to be finished when there are no network connections
     await this.email.waitFor({ state: "visible" });
