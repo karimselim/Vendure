@@ -1,5 +1,5 @@
 import { Locator, Page } from "@playwright/test";
-import { loginDataType } from "../types/login";
+import { loginDataType } from "../../types/auth/login";
 
 export class LoginPage {
   private readonly email: Locator;

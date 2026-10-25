@@ -1,6 +1,7 @@
 import { expect } from "@playwright/test";
-import { test } from "../fixtures/base";
-import { loginData } from "../test-data/login";
+import { test } from "../../../fixtures/base";
+// import { loginData } from "../../test-data/auth/login";
+import { loginData } from "../../../test-data/auth/login";
 
 test("Valid forgot password", async ({ forgotPasswordPage, page }) => {
   await forgotPasswordPage.validForgotPassword(loginData);

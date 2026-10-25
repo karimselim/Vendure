@@ -1,4 +1,4 @@
-import { loginDataType } from "./../types/login";
+import { loginDataType } from "../../types/auth/login";
 import { Locator, Page } from "@playwright/test";
 
 export class ForgotPassword {

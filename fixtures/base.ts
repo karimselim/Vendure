@@ -1,7 +1,7 @@
 import { test as base } from "@playwright/test";
-import { SignupPage } from "../pages/signup";
-import { LoginPage } from "../pages/login";
-import { ForgotPassword } from "../pages/forgotPassword";
+import { SignupPage } from "../pages/auth/signup";
+import { LoginPage } from "../pages/auth/login";
+import { ForgotPassword } from "../pages/auth/forgotPassword";
 
 type MyFixtures = {
   signupPage: SignupPage;
