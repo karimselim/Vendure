@@ -6,7 +6,7 @@ export class ShopApiClient {
     private baseUrl = "http://localhost:3000/shop-api",
   ) {}
 
-  async send<T>(query: string, variables?: Record<"string", unknown>) {
+  async send<T>(query: string, variables?: Record<string, unknown>) {
     const response = await this.request.post(this.baseUrl, {
       data: { query, variables },
     });
