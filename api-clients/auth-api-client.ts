@@ -1,0 +1,24 @@
+// api-clients/auth-api.ts
+import { ShopApiClient } from "./shop-api-client";
+
+export class AuthApi {
+  constructor(private client: ShopApiClient) {}
+
+  async login(username: string, password: string, rememberMe?: boolean) {
+    const query = `
+      mutation Login($username: String!, $password: String!, $rememberMe: Boolean) {
+        login(username: $username, password: $password, rememberMe: $rememberMe) {
+          ... on CurrentUser {
+            id
+            identifier
+          }
+          ... on ErrorResult {
+            errorCode
+            message
+          }
+        }
+      }
+    `;
+    return this.client.send(query, { username, password, rememberMe });
+  }
+}
