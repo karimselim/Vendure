@@ -4,8 +4,17 @@ type LoginSuccess = {
 };
 
 type LoginError = {
-  errorCode: number;
+  errorCode: string;
   message: string;
 };
 
-export type GraphLoginResult = LoginSuccess | LoginError;
+type GraphLoginResult = LoginSuccess | LoginError;
+
+export type GraphLoginResponse = {
+  data?: {
+    login: GraphLoginResult;
+  };
+  errors?: {
+    message: string;
+  }[];
+};
