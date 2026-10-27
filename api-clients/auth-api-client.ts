@@ -1,3 +1,4 @@
+import { GraphLoginResult } from "./../types/api-types/login-api";
 // api-clients/auth-api.ts
 import { ShopApiClient } from "./shop-api-client";
 
@@ -19,6 +20,10 @@ export class AuthApi {
         }
       }
     `;
-    return this.client.send(query, { username, password, rememberMe });
+    return this.client.send<GraphLoginResult>(query, {
+      username,
+      password,
+      rememberMe,
+    });
   }
 }
