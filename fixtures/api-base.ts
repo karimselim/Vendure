@@ -1,9 +1,9 @@
 import { ShopApiClient } from "./../api-clients/shop-api-client";
-import { AuthApiClient } from "./../api-clients/auth-api-client";
+import { LoginApiClient } from "../api-clients/login-api-client";
 import { test as base } from "@playwright/test";
 
 type MyFixtures = {
-  authApiClient: AuthApiClient;
+  loginApiClient: LoginApiClient;
   shopApiClient: ShopApiClient;
 };
 
@@ -13,8 +13,8 @@ export const test = base.extend<MyFixtures>({
     await use(shopApiClient);
   },
 
-  authApiClient: async ({ shopApiClient }, use) => {
-    const authApiClient = new AuthApiClient(shopApiClient);
-    await use(authApiClient);
+  loginApiClient: async ({ shopApiClient }, use) => {
+    const loginApiClient = new LoginApiClient(shopApiClient);
+    await use(loginApiClient);
   },
 });

@@ -1,7 +1,7 @@
-import { GraphLoginResponse } from "./../types/api-types/login-api";
+import { GraphLoginResponse } from "../types/api-types/login-api";
 import { ShopApiClient } from "./shop-api-client";
 
-export class AuthApiClient {
+export class LoginApiClient {
   constructor(private client: ShopApiClient) {}
 
   async login(username: string, password: string, rememberMe?: boolean) {
