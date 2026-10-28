@@ -1,6 +1,6 @@
 import { expect } from "@playwright/test";
-import { test } from "../fixtures/base";
-import { signupData } from "../test-data/signup";
+import { test } from "../../../fixtures/base";
+import { signupData } from "../../../test-data/auth/signup";
 
 test("testing signup", async ({ signupPage, page }) => {
   await Promise.all([

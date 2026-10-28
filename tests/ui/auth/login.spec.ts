@@ -1,6 +1,6 @@
 import { expect } from "@playwright/test";
-import { test } from "../fixtures/base";
-import { loginData } from "../test-data/login";
+import { test } from "../../../fixtures/base";
+import { loginData } from "../../../test-data/auth/login";
 
 test("valid login", async ({ loginPage, page }) => {
   await Promise.all([
