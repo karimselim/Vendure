@@ -1,3 +1,4 @@
+import { graphSignupResult } from "../types/api-types/signup-api";
 import { ShopApiClient } from "./shop-api-client";
 
 export class SignupApiClient {
@@ -32,7 +33,7 @@ export class SignupApiClient {
       }
     }
     `;
-    return this.client.send(query, {
+    return this.client.send<graphSignupResult>(query, {
       emailAddress,
       firstName,
       lastName,
