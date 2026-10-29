@@ -1,7 +1,7 @@
-import { ShopApiClient } from "./../api-clients/shop-api-client";
-import { LoginApiClient } from "../api-clients/login-api-client";
+import { ShopApiClient } from "../api-clients/auth/shop-api-client";
+import { LoginApiClient } from "../api-clients/auth/login-api-client";
 import { test as base } from "@playwright/test";
-import { SignupApiClient } from "../api-clients/signup-api-client";
+import { SignupApiClient } from "../api-clients/auth/signup-api-client";
 
 type MyFixtures = {
   loginApiClient: LoginApiClient;
