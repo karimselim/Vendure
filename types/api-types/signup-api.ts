@@ -24,9 +24,9 @@ export type graphSignupResult =
   | signupPasswordVAlidationError
   | signupNativeAuthStrategyError;
 
-type graphLoginResponse = {
+export type graphSignupResponse = {
   data?: {
-    registerCustomerAccount: graphLoginResponse;
+    registerCustomerAccount: graphSignupResult;
   };
   errors?: {
     message: string;
