@@ -1,4 +1,4 @@
-import { graphSignupResponse } from "../../types/api-types/signup-api";
+import { graphSignupResponse } from "../../types/api-types/auth/signup-api";
 import { ShopApiClient } from "./shop-api-client";
 
 export class SignupApiClient {

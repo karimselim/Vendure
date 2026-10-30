@@ -1,4 +1,4 @@
-import { graphForgotPasswordResponse } from "../../types/api-types/forgotPassword-api";
+import { graphForgotPasswordResponse } from "../../types/api-types/auth/forgotPassword-api";
 import { ShopApiClient } from "./shop-api-client";
 
 export class ForgotPasswordApiClient {

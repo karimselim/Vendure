@@ -1,4 +1,4 @@
-import { GraphLoginResponse } from "../../types/api-types/login-api";
+import { GraphLoginResponse } from "../../types/api-types/auth/login-api";
 import { ShopApiClient } from "./shop-api-client";
 
 export class LoginApiClient {
