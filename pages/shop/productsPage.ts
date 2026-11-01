@@ -34,6 +34,7 @@ export class ProductsPage {
   }
 
   async checkForProductDetails() {
+    await this.page.goto("/en/search");
     const productCount = await this.products.count();
     const productImagesCount = await this.productImages.count();
     const productTitlesCount = await this.productTitles.count();
