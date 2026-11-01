@@ -6,7 +6,6 @@ export class ProductsPage {
   private readonly productImages: Locator;
   private readonly productTitles: Locator;
   private readonly productPrices: Locator;
-  private readonly searchBar: Locator;
   private readonly sortingMenu: Locator;
 
   constructor(private readonly page: Page) {
@@ -21,7 +20,6 @@ export class ProductsPage {
     this.productTitles = this.products.locator("h3");
     this.productPrices = this.products.locator("p");
 
-    this.searchBar = this.page.getByPlaceholder("Search products...");
     this.sortingMenu = this.page.getByRole("combobox");
   }
 
