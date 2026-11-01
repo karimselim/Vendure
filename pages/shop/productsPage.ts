@@ -26,12 +26,13 @@ export class ProductsPage {
   }
 
   async navigateToDetailsPage() {
-    this.shopNowButton.click();
-    this.products.nth(0).click();
+    await this.page.goto("/");
+    await this.shopNowButton.click();
+    await this.products.nth(0).click();
   }
 
   async navigateBack() {
-    this.page.goBack();
+    await this.page.goBack();
   }
 
   async checkForProductDetails() {
