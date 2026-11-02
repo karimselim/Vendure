@@ -29,10 +29,6 @@ export class ProductsPage {
     await this.products.nth(0).click();
   }
 
-  async navigateBack() {
-    await this.page.goBack();
-  }
-
   async checkForProductDetails() {
     await this.page.goto("/en/search");
     const productCount = await this.products.count();
