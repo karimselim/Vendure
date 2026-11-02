@@ -23,10 +23,9 @@ export class ProductsPage {
     this.sortingMenu = this.page.getByRole("combobox");
   }
 
-  async navigateToDetailsPage() {
+  async navigateToProductsPage() {
     await this.page.goto("/");
     await this.shopNowButton.click();
-    await this.products.nth(0).click();
   }
 
   async checkForProductDetails() {
