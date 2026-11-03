@@ -15,10 +15,10 @@ export class ProductsPage {
     });
 
     //pay attention that these are all the products
-    this.products = this.page.locator("#product");
-    this.productImages = this.products.locator("img");
-    this.productTitles = this.products.locator("h3");
-    this.productPrices = this.products.locator("p");
+    this.products = this.page.getByTestId("product");
+    this.productImages = this.products.getByTestId("image");
+    this.productTitles = this.products.getByTestId("title");
+    this.productPrices = this.products.getByTestId("price");
 
     this.sortingMenu = this.page.getByRole("combobox");
   }
