@@ -3,9 +3,6 @@ import { Locator, Page } from "@playwright/test";
 export class ProductsPage {
   private readonly shopNowButton: Locator;
   private readonly products: Locator;
-  private readonly productImages: Locator;
-  private readonly productTitles: Locator;
-  private readonly productPrices: Locator;
   private readonly sortingMenu: Locator;
 
   constructor(private readonly page: Page) {
@@ -16,9 +13,6 @@ export class ProductsPage {
 
     //pay attention that these are all the products
     this.products = this.page.getByTestId("product");
-    this.productImages = this.products.getByTestId("image");
-    this.productTitles = this.products.getByTestId("title");
-    this.productPrices = this.products.getByTestId("price");
 
     this.sortingMenu = this.page.getByRole("combobox");
   }
