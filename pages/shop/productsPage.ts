@@ -35,11 +35,11 @@ export class ProductsPage {
   }
 
   async navigateToFirstProductDetails() {
-    this.products.first().click();
+    await this.products.first().click();
   }
 
   async navigateToLastProductDetails() {
-    this.products.last().click();
+    await this.products.last().click();
   }
 
   getProductImage(product: Locator): Locator {

@@ -3,7 +3,7 @@ import { test } from "../../../fixtures/base";
 
 test("Products page navigation", async ({ productsPage, page }) => {
   await productsPage.navigateToProductsPage();
-  expect(page).toHaveURL("en/search");
+  await expect(page).toHaveURL("en/search");
 });
 
 // I'm testing navigation to the product details using the first and last products
