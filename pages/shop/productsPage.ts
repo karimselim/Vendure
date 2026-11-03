@@ -28,6 +28,14 @@ export class ProductsPage {
     await this.shopNowButton.click();
   }
 
+  async navigateToFirstProductDetails() {
+    this.products.first().click();
+  }
+
+  async navigateToLastProductDetails() {
+    this.products.last().click();
+  }
+
   async checkForProductDetails() {
     await this.page.goto("/en/search");
     const productCount = await this.products.count();
