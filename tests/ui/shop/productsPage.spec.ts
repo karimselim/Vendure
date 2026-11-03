@@ -13,8 +13,14 @@ test.only("Products details navigation ( using boundary values ) ", async ({
 }) => {
   await productsPage.navigateToProductsPage();
 
-  const firstHref = (await productsPage.getProductInfo()).firstProductHref;
-  const lastHref = (await productsPage.getProductInfo()).lastProductHref;
+  const firstHref = await productsPage
+    .getProducts()
+    .products.first()
+    .getAttribute("href");
+  const lastHref = await productsPage
+    .getProducts()
+    .products.last()
+    .getAttribute("href");
 
   if (!firstHref) {
     throw new Error("first product doesn't have href");

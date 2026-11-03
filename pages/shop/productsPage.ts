@@ -23,10 +23,9 @@ export class ProductsPage {
     this.sortingMenu = this.page.getByRole("combobox");
   }
 
-  async getProductInfo() {
+  getProducts() {
     return {
-      firstProductHref: await this.products.first().getAttribute("href"),
-      lastProductHref: await this.products.last().getAttribute("href"),
+      products: this.products,
     };
   }
 
