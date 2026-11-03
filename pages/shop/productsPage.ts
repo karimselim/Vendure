@@ -42,21 +42,15 @@ export class ProductsPage {
     this.products.last().click();
   }
 
-  async checkForProductDetails() {
-    await this.page.goto("/en/search");
-    const productCount = await this.products.count();
-    const productImagesCount = await this.productImages.count();
-    const productTitlesCount = await this.productTitles.count();
-    const productPricesCount = await this.productPrices.count();
+  getProductImage(product: Locator): Locator {
+    return product.getByTestId("image");
+  }
 
-    if (productCount === 0) throw new Error("There's no products in the page");
+  getProductTitle(product: Locator): Locator {
+    return product.getByTestId("title");
+  }
 
-    if (
-      productCount !== productImagesCount ||
-      productCount !== productTitlesCount ||
-      productCount !== productPricesCount
-    ) {
-      throw new Error("Some Products details are missing");
-    }
+  getProductPrice(product: Locator): Locator {
+    return product.getByTestId("price");
   }
 }

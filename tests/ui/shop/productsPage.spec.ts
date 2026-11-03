@@ -7,7 +7,7 @@ test("Products page navigation", async ({ productsPage, page }) => {
 });
 
 // I'm testing navigation to the product details using the first and last products
-test.only("Products details navigation ( using boundary values ) ", async ({
+test("Products details navigation ( using boundary values ) ", async ({
   productsPage,
   page,
 }) => {
@@ -38,6 +38,20 @@ test.only("Products details navigation ( using boundary values ) ", async ({
   await expect(page).toHaveURL(lastHref);
 });
 
-test("Checking for products details", async ({ productsPage }) => {
-  await productsPage.checkForProductDetails();
+test("Checking for products details", async ({ productsPage, page }) => {
+  await productsPage.navigateToProductsPage();
+  const products = productsPage.getProducts().products;
+  await expect(products.first()).toBeVisible();
+
+  const productsCount = await products.count();
+
+  expect(productsCount).toBeGreaterThan(0);
+
+  for (let i = 0; i < productsCount; i++) {
+    const product = products.nth(i);
+
+    await expect(productsPage.getProductImage(product)).toBeVisible();
+    await expect(productsPage.getProductTitle(product)).toHaveText(/\S/);
+    await expect(productsPage.getProductPrice(product)).toHaveText(/\d/);
+  }
 });
