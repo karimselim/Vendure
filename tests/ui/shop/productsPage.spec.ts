@@ -15,12 +15,9 @@ test("Products details navigation ( using boundary values ) ", async ({
 
   const firstHref = await productsPage
     .getProducts()
-    .products.first()
+    .first()
     .getAttribute("href");
-  const lastHref = await productsPage
-    .getProducts()
-    .products.last()
-    .getAttribute("href");
+  const lastHref = await productsPage.getProducts().last().getAttribute("href");
 
   if (!firstHref) {
     throw new Error("first product doesn't have href");
@@ -40,7 +37,7 @@ test("Products details navigation ( using boundary values ) ", async ({
 
 test("Checking for products details", async ({ productsPage, page }) => {
   await productsPage.navigateToProductsPage();
-  const products = productsPage.getProducts().products;
+  const products = productsPage.getProducts();
   await expect(products.first()).toBeVisible();
 
   const productsCount = await products.count();

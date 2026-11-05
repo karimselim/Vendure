@@ -17,10 +17,8 @@ export class ProductsPage {
     this.sortingMenu = this.page.getByRole("combobox");
   }
 
-  getProducts() {
-    return {
-      products: this.products,
-    };
+  getProducts(): Locator {
+    return this.products;
   }
 
   async navigateToProductsPage() {
