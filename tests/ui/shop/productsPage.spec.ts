@@ -52,3 +52,27 @@ test("Checking for products details", async ({ productsPage, page }) => {
     await expect(productsPage.getProductPrice(product)).toHaveText(/\d/);
   }
 });
+
+test.only("Test Sorting", async ({ productsPage, page }) => {
+  const ascendingSort = (array: string[]) => {
+    array.sort((a, b) => a.localeCompare(b));
+  };
+  const descendingSort = (array: string[]): string[] => {
+    return array.sort((a, b) => b.localeCompare(a));
+  };
+
+  const sortingMethod = "Z-A";
+  await productsPage.sortingProducts(sortingMethod);
+  await expect(page).toHaveURL(/sort=name-desc/);
+
+  const productsTitles = await productsPage
+    .getProducts()
+    .getByTestId("title")
+    .allTextContents();
+
+  if (productsTitles.length === 0 || productsTitles.length === 1)
+    throw new Error("There's no products to sort or there's just one product");
+
+  const sortedTitlesArray = descendingSort([...productsTitles]);
+  expect(productsTitles).toEqual(sortedTitlesArray);
+});
