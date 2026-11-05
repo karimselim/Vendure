@@ -21,16 +21,16 @@ export class ProductsPage {
     return this.products;
   }
 
-  async navigateToProductsPage() {
+  async navigateToProductsPage(): Promise<void> {
     await this.page.goto("/");
     await this.shopNowButton.click();
   }
 
-  async navigateToFirstProductDetails() {
+  async navigateToFirstProductDetails(): Promise<void> {
     await this.products.first().click();
   }
 
-  async navigateToLastProductDetails() {
+  async navigateToLastProductDetails(): Promise<void> {
     await this.products.last().click();
   }
 
