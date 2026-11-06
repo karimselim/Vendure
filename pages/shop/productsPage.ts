@@ -1,3 +1,4 @@
+import { sortingMethodType } from "./../../types/ui/shop/productsPage";
 import { Locator, Page } from "@playwright/test";
 
 export class ProductsPage {
@@ -66,19 +67,16 @@ export class ProductsPage {
     return product.getByTestId("price");
   }
 
-  async sortingProducts(
-    sortingMethod: "A-Z" | "Z-A" | "lowest to highest" | "highest to lowest",
-  ): Promise<void> {
+  async sortingProducts(sortingMethod: sortingMethodType): Promise<void> {
     await this.page.goto("/search");
+    const options: Record<sortingMethodType, Locator> = {
+      "A-Z": this.AToZOption,
+      "Z-A": this.ZToAOption,
+      "highest to lowest": this.highestToLowestOption,
+      "lowest to highest": this.lowestToHighestOption,
+    };
+
     await this.sortingMenu.click();
-    if (sortingMethod === "Z-A") {
-      await this.ZToAOption.click();
-    } else if (sortingMethod === "A-Z") {
-      await this.AToZOption.click();
-    } else if (sortingMethod === "highest to lowest") {
-      await this.highestToLowestOption.click();
-    } else if (sortingMethod === "lowest to highest") {
-      await this.lowestToHighestOption.click();
-    }
+    await options[sortingMethod].click();
   }
 }
