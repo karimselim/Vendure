@@ -1,5 +1,6 @@
 import { expect } from "@playwright/test";
 import { test } from "../../../fixtures/base";
+import { sortingMethodType } from "../../../types/ui/shop/productsPage";
 
 test("Products page navigation", async ({ productsPage, page }) => {
   await productsPage.navigateToProductsPage();
@@ -54,25 +55,51 @@ test("Checking for products details", async ({ productsPage, page }) => {
 });
 
 test.only("Test Sorting", async ({ productsPage, page }) => {
-  const ascendingSort = (array: string[]) => {
-    array.sort((a, b) => a.localeCompare(b));
+  const ascendingSort = (array: string[]): string[] => {
+    return array.sort((a, b) => a.localeCompare(b));
   };
   const descendingSort = (array: string[]): string[] => {
     return array.sort((a, b) => b.localeCompare(a));
   };
 
-  const sortingMethod = "Z-A";
+  const sortingMethod: sortingMethodType = "lowest to highest";
   await productsPage.sortingProducts(sortingMethod);
-  await expect(page).toHaveURL(/sort=name-desc/);
+  if (sortingMethod === "Z-A") {
+    await expect(page).toHaveURL(/sort=name-desc/);
+  } else if (sortingMethod === "A-Z") {
+    await expect(page).toHaveURL(/sort=name-asc/);
+  } else if (sortingMethod === "lowest to highest") {
+    await expect(page).toHaveURL(/sort=price-asc/);
+  } else if (sortingMethod === "highest to lowest") {
+    await expect(page).toHaveURL(/sort=price-desc/);
+  }
 
   const productsTitles = await productsPage
     .getProducts()
     .getByTestId("title")
     .allTextContents();
 
-  if (productsTitles.length === 0 || productsTitles.length === 1)
+  const productsPrices = await productsPage
+    .getProducts()
+    .getByTestId("price")
+    .allTextContents();
+
+  if (productsPrices.length <= 1)
     throw new Error("There's no products to sort or there's just one product");
 
-  const sortedTitlesArray = descendingSort([...productsTitles]);
-  expect(productsTitles).toEqual(sortedTitlesArray);
+  if (sortingMethod == "Z-A") {
+    const sortedTitlesArray = descendingSort([...productsTitles]);
+    expect(productsTitles).toEqual(sortedTitlesArray);
+  } else if (sortingMethod === "A-Z") {
+    const sortedTitlesArray = ascendingSort([...productsTitles]);
+    expect(productsTitles).toEqual(sortedTitlesArray);
+  } else if (sortingMethod === "highest to lowest") {
+    const sortedPricesArray = descendingSort([...productsPrices]);
+    expect(productsPrices).toEqual(sortedPricesArray);
+  } else if (sortingMethod === "lowest to highest") {
+    const sortedPricesArray = ascendingSort([...productsPrices]);
+    expect(productsPrices).toEqual(sortedPricesArray);
+  } else {
+    throw new Error("Wrong sorting method");
+  }
 });
