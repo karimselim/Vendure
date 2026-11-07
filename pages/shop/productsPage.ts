@@ -1,5 +1,5 @@
 import { sortingMethodType } from "./../../types/ui/shop/productsPage";
-import { Locator, Page } from "@playwright/test";
+import { expect, Locator, Page } from "@playwright/test";
 
 export class ProductsPage {
   private readonly shopNowButton: Locator;
@@ -76,7 +76,11 @@ export class ProductsPage {
       "lowest to highest": this.lowestToHighestOption,
     };
 
-    await this.sortingMenu.click();
+    // the click can be lost if the page isn't interactive yet, so retry it with proof it worked
+    await expect(async () => {
+      await this.sortingMenu.click();
+      await expect(options[sortingMethod]).toBeVisible({ timeout: 1000 });
+    }).toPass({ timeout: 15000 });
     await options[sortingMethod].click();
   }
 }
