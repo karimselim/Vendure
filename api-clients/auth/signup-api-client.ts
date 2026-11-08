@@ -1,5 +1,5 @@
 import { graphSignupResponse } from "../../types/api-types/auth/signup-api";
-import { ShopApiClient } from "./shop-api-client";
+import { ShopApiClient } from "../shop-api-client";
 
 export class SignupApiClient {
   constructor(private client: ShopApiClient) {}

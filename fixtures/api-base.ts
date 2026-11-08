@@ -1,4 +1,4 @@
-import { ShopApiClient } from "../api-clients/auth/shop-api-client";
+import { ShopApiClient } from "../api-clients/shop-api-client";
 import { LoginApiClient } from "../api-clients/auth/login-api-client";
 import { test as base } from "@playwright/test";
 import { SignupApiClient } from "../api-clients/auth/signup-api-client";

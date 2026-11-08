@@ -1,5 +1,5 @@
 import { GraphLoginResponse } from "../../types/api-types/auth/login-api";
-import { ShopApiClient } from "./shop-api-client";
+import { ShopApiClient } from "../shop-api-client";
 
 export class LoginApiClient {
   constructor(private client: ShopApiClient) {}
