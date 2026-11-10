@@ -1,14 +1,16 @@
-import { graphGetProductsResponse } from "../../types/api-types/shop/products-page/getProducts-api";
+import {
+  graphGetProductsResponse,
+  productListOptionsType,
+} from "../../types/api-types/shop/products-page/getProducts-api";
 import { ShopApiClient } from "../shop-api-client";
-import { itemsType } from "../../types/api-types/shop/products-page/getProducts-api";
 
 export class GetProductsApiClient {
   constructor(private client: ShopApiClient) {}
 
-  async getProducts() {
+  async getProducts(options?: productListOptionsType) {
     const query = `#graphql
-  query getProducts{
-    products{
+  query getProducts($options:ProductListOptions){
+    products(options: $options){
       items{
         id
         name
@@ -21,6 +23,6 @@ export class GetProductsApiClient {
     }
   }
 `;
-    return this.client.send<graphGetProductsResponse>(query);
+    return this.client.send<graphGetProductsResponse>(query, options);
   }
 }

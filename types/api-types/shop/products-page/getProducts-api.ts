@@ -27,3 +27,16 @@ export type graphGetProductsResponse = {
   data?: getProductsResponse;
   errors?: getProductsError;
 };
+
+export type sortingWayType = "ASC" | "DESC";
+
+export type productListOptionsType = {
+  options: {
+    sort: {
+      name?: sortingWayType;
+      id?: sortingWayType;
+      createdAt?: sortingWayType;
+      description?: sortingWayType;
+    };
+  };
+};
