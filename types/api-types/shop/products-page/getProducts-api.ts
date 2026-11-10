@@ -1,13 +1,15 @@
+export type itemsType = {
+  id: string;
+  name: string;
+  createdAt: string;
+  updatedAt: string;
+  description: string;
+  enabled: boolean;
+}[];
+
 type getProductsResponse = {
   products: {
-    items: {
-      id: string;
-      name: string;
-      createdAt: string;
-      updatedAt: string;
-      description: string;
-      enabled: boolean;
-    }[];
+    items: itemsType;
   };
 };
 
