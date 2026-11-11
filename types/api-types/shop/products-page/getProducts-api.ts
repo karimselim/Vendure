@@ -40,3 +40,10 @@ export type productListOptionsType = {
     };
   };
 };
+
+export type apiSortCasesType = {
+  option: "id" | "name" | "createdAt";
+  order: sortingWayType;
+}[];
+
+export type sortingOptionType = apiSortCasesType[number]["option"];
