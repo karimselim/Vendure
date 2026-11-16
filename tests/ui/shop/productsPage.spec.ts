@@ -53,3 +53,27 @@ test("Checking for products details", async ({ productsPage, page }) => {
     await expect(productsPage.getProductPrice(product)).toHaveText(/\d/);
   }
 });
+
+test.only("Should display consistent product information between the product card and product details page", async ({
+  producDetailsPage,
+  productsPage,
+  page,
+}) => {
+  await page.goto("/search");
+  const products = await productsPage.getProducts().all();
+  for (const product of products) {
+    const productDetails = await producDetailsPage.getProducDetails(product);
+    const href = await product.getAttribute("href");
+    if (!href) throw new Error("there's no href");
+
+    const price = productsPage.getProductPrice(product);
+    const title = productsPage.getProductTitle(product);
+    await product.click();
+    await page.waitForLoadState("networkidle");
+    await expect(page).toHaveURL(href);
+    expect(price.textContent).toEqual(productDetails.price.textContent);
+    expect(title.textContent).toEqual(productDetails.title.textContent);
+
+    await page.goBack();
+  }
+});

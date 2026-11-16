@@ -3,12 +3,14 @@ import { SignupPage } from "../pages/auth/signup";
 import { LoginPage } from "../pages/auth/login";
 import { ForgotPassword } from "../pages/auth/forgotPassword";
 import { ProductsPage } from "../pages/shop/productsPage";
+import { ProductDetailsPage } from "../pages/shop/productDetailsPage";
 
 type MyFixtures = {
   signupPage: SignupPage;
   loginPage: LoginPage;
   forgotPasswordPage: ForgotPassword;
   productsPage: ProductsPage;
+  producDetailsPage: ProductDetailsPage;
 };
 
 export const test = base.extend<MyFixtures>({
@@ -30,5 +32,10 @@ export const test = base.extend<MyFixtures>({
   productsPage: async ({ page }, use) => {
     const productsPage = new ProductsPage(page);
     await use(productsPage);
+  },
+
+  producDetailsPage: async ({ page }, use) => {
+    const productDetailsPage = new ProductDetailsPage(page);
+    await use(productDetailsPage);
   },
 });
