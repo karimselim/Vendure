@@ -19,7 +19,7 @@ export class ProductDetailsPage {
     this.AddToCart = this.page.getByRole("button", { name: "Add to Cart" });
   }
 
-  async getProducDetails(product: Locator) {
+  async getProducDetails() {
     return {
       image: this.image,
       title: this.title,

@@ -62,7 +62,7 @@ test.only("Should display consistent product information between the product car
   await page.goto("/search");
   const products = await productsPage.getProducts().all();
   for (const product of products) {
-    const productDetails = await producDetailsPage.getProducDetails(product);
+    const productDetails = await producDetailsPage.getProducDetails();
     const href = await product.getAttribute("href");
     if (!href) throw new Error("there's no href");
 
