@@ -60,20 +60,32 @@ test.only("Should display consistent product information between the product car
   page,
 }) => {
   await page.goto("/search");
-  const products = await productsPage.getProducts().all();
-  for (const product of products) {
-    const productDetails = await producDetailsPage.getProducDetails();
-    const href = await product.getAttribute("href");
-    if (!href) throw new Error("there's no href");
+  const products = productsPage.getProducts();
+  const count = await products.count();
+  expect(count).toBeGreaterThan(0);
 
-    const price = productsPage.getProductPrice(product);
-    const title = productsPage.getProductTitle(product);
-    await product.click();
-    await page.waitForLoadState("networkidle");
-    await expect(page).toHaveURL(href);
-    expect(price.textContent).toEqual(productDetails.price.textContent);
-    expect(title.textContent).toEqual(productDetails.title.textContent);
+  for (let i = 0; i < count; i++) {
+    await test.step(`Product ${i + 1}`, async () => {
+      await page.goto("/search");
+      await expect(products.first()).toBeVisible();
 
-    await page.goBack();
+      const card = products.nth(i);
+      const href = await card.getAttribute("href");
+      if (!href) throw new Error("Card has no href");
+
+      const cardTitle = (
+        await productsPage.getProductTitle(card).textContent()
+      )?.trim();
+      const cardPrice = (
+        await productsPage.getProductPrice(card).textContent()
+      )?.trim();
+
+      await card.click();
+      await expect(page).toHaveURL(href);
+
+      const details = producDetailsPage.getProducDetails();
+      await expect(details.title).toHaveText(cardTitle!);
+      await expect(details.price).toHaveText(cardPrice!);
+    });
   }
 });
