@@ -1,5 +1,10 @@
+import { Locator } from "@playwright/test";
+
 export type productDataType = {
-  image: "string";
-  name: "string";
-  price: "string";
+  title: Locator;
+  price: Locator;
+  sku: Locator;
+  stockStatus: Locator;
+  outOfStockButton: Locator;
+  addToCartButton: Locator;
 };

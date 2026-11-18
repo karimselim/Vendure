@@ -1,4 +1,5 @@
 import { Locator, Page } from "@playwright/test";
+import { productDataType } from "../../types/ui/shop/productDetailsPage";
 
 export class ProductDetailsPage {
   private readonly image: Locator;
@@ -29,9 +30,8 @@ export class ProductDetailsPage {
     });
   }
 
-  getProducDetails() {
+  getProducDetails(): productDataType {
     return {
-      image: this.image,
       title: this.title,
       price: this.price,
       sku: this.sku,
