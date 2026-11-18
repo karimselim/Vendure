@@ -13,21 +13,27 @@ test("Should display all required info for the product", async ({
 
   for (let i = 0; i < count; i++) {
     await test.step(`product ${i + 1}`, async () => {
-      const card = cards.nth(i);
-
       await page.goto("/search");
-      await expect(cards.first()).toBeVisible();
+
+      const card = cards.nth(i);
+      await expect(card).toBeVisible();
 
       await card.click();
 
       const details = producDetailsPage.getProducDetails();
-      await expect(details.price).toBeVisible();
-      await expect(details.title).toBeVisible();
-      await expect(details.sku).toBeVisible();
-      await expect(details.stockStatus).toBeVisible();
+      await expect.soft(details.price).not.toBeEmpty();
+      await expect.soft(details.title).not.toBeEmpty();
+      await expect.soft(details.sku).not.toBeEmpty();
+      await expect.soft(details.stockStatus).not.toBeEmpty();
+
       if ((await details.stockStatus.innerText()) === "Out of Stock") {
-        await expect(details.addToCartButton).not.toBeVisible();
-        await expect(details.outOfStockButton).toBeVisible();
+        await expect.soft(details.addToCartButton).toBeHidden();
+        await expect.soft(details.outOfStockButton).toBeVisible();
+      }
+
+      if ((await details.stockStatus.innerText()) === "In Stock") {
+        await expect.soft(details.addToCartButton).toBeVisible();
+        await expect.soft(details.outOfStockButton).toBeHidden();
       }
     });
   }
