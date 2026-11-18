@@ -3,7 +3,7 @@ import { test } from "../../../fixtures/api-base";
 import {
   itemsType,
   sortingWayType,
-} from "../../../types/api-types/shop/products-page/getProducts-api";
+} from "../../../types/api-types/shop/getProducts-api";
 import { stat } from "node:fs";
 
 test("Testing get products", async ({ getProductsApiClient }) => {

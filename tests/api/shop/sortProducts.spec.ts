@@ -5,7 +5,7 @@ import { test } from "../../../fixtures/api-base";
 import {
   apiSortCasesType,
   sortingOptionType,
-} from "../../../types/api-types/shop/products-page/getProducts-api";
+} from "../../../types/api-types/shop/getProducts-api";
 
 // Notice that the UI only have name and price
 const apiSortCases: apiSortCasesType = [

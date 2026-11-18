@@ -1,7 +1,7 @@
 import {
   graphGetProductsResponse,
   productListOptionsType,
-} from "../../types/api-types/shop/products-page/getProducts-api";
+} from "../../types/api-types/shop/getProducts-api";
 import { ShopApiClient } from "../shop-api-client";
 
 export class GetProductsApiClient {
