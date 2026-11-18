@@ -7,7 +7,8 @@ export class ProductDetailsPage {
   private readonly description: Locator;
   private readonly sku: Locator;
   private readonly stockStatus: Locator;
-  private readonly AddToCart: Locator;
+  private readonly addToCartButton: Locator;
+  private readonly outOfStockButton: Locator;
 
   constructor(private readonly page: Page) {
     this.image = this.page.getByTestId("productImg");
@@ -20,7 +21,12 @@ export class ProductDetailsPage {
     this.description = this.page.getByTestId("productDescription");
     this.sku = this.page.getByTestId("productSku");
     this.stockStatus = this.page.getByTestId("productStockStatus");
-    this.AddToCart = this.page.getByRole("button", { name: "Add to Cart" });
+    this.addToCartButton = this.page.getByRole("button", {
+      name: "Add to Cart",
+    });
+    this.outOfStockButton = this.page.getByRole("button", {
+      name: "Out of Stock",
+    });
   }
 
   getProducDetails() {
@@ -28,6 +34,10 @@ export class ProductDetailsPage {
       image: this.image,
       title: this.title,
       price: this.price,
+      sku: this.sku,
+      stockStatus: this.stockStatus,
+      addToCartButton: this.addToCartButton,
+      outOfStockButton: this.outOfStockButton,
     };
   }
 }
