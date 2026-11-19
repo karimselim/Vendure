@@ -1,6 +1,7 @@
+import { graphProductDetailsType } from "../../types/api-types/shop/productDetails-api";
 import { ShopApiClient } from "../shop-api-client";
 
-export class productDetailsApiClient {
+export class ProductDetailsApiClient {
   constructor(private client: ShopApiClient) {}
 
   async productDetails() {
@@ -18,6 +19,6 @@ export class productDetailsApiClient {
     }
     `;
 
-    return this.client.send(query);
+    return this.client.send<graphProductDetailsType>(query);
   }
 }

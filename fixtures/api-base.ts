@@ -4,6 +4,7 @@ import { test as base } from "@playwright/test";
 import { SignupApiClient } from "../api-clients/auth/signup-api-client";
 import { ForgotPasswordApiClient } from "../api-clients/auth/forgotPassword-api-clients";
 import { GetProductsApiClient } from "../api-clients/shop/getProducts-api-client";
+import { ProductDetailsApiClient } from "../api-clients/shop/productDetails-api-client";
 
 type MyFixtures = {
   loginApiClient: LoginApiClient;
@@ -11,6 +12,7 @@ type MyFixtures = {
   signupApiClient: SignupApiClient;
   forgotPasswordApiClient: ForgotPasswordApiClient;
   getProductsApiClient: GetProductsApiClient;
+  productDetailsApiClient: ProductDetailsApiClient;
 };
 
 export const test = base.extend<MyFixtures>({
@@ -37,5 +39,10 @@ export const test = base.extend<MyFixtures>({
   getProductsApiClient: async ({ shopApiClient }, use) => {
     const getProductsApiClient = new GetProductsApiClient(shopApiClient);
     await use(getProductsApiClient);
+  },
+
+  productDetailsApiClient: async ({ shopApiClient }, use) => {
+    const productDetailsApiClient = new ProductDetailsApiClient(shopApiClient);
+    await use(productDetailsApiClient);
   },
 });
