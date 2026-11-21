@@ -4,21 +4,22 @@ import { ShopApiClient } from "../shop-api-client";
 export class ProductDetailsApiClient {
   constructor(private client: ShopApiClient) {}
 
-  async productDetails() {
+  async productDetails(id: string) {
     const query = `#graphql
-    query productDetails{
-      product(slug:"air-pods"){
-        id
-        name
-        description
-        variants{
-          sku
-          price
-        }
-      }
+    query productDetails($id:ID){
+  product(id:$id){
+    id
+    name
+    description
+    variants{
+      sku
+      price
+      stockLevel
     }
+  }
+}
     `;
 
-    return this.client.send<graphProductDetailsType>(query);
+    return this.client.send<graphProductDetailsType>(query, { id });
   }
 }
